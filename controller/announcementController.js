@@ -27,10 +27,6 @@ module.exports.createAnnouncement = asyncHandler(async (req, res) => {
 module.exports.getAllAnnouncements = asyncHandler(async (req, res) => {
     try {
       const allAnnouncements = await Announcement.find();
-      if (!allAnnouncements || allAnnouncements.length === 0) {
-        return response.notFoundError(res, "No Announcements found.");
-      }
-  
       response.successResponse(res, allAnnouncements, "Announcements retrieved successfully.");
     } catch (error) {
       response.internalServerError(res, error.message);

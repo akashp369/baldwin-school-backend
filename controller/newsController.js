@@ -27,10 +27,6 @@ module.exports.createAdmissionNews = asyncHandler(async (req, res) => {
 module.exports.getAllAdmissionNews = asyncHandler(async (req, res) => {
     try {
         const allNews = await AdmissionNews.find();
-        if (!allNews || allNews.length === 0) {
-            return response.notFoundError(res, "No Admission News found.");
-        }
-
         response.successResponse(res, allNews, "Admission News retrieved successfully.");
     } catch (error) {
         response.internalServerError(res, error.message);

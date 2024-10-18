@@ -7,7 +7,7 @@ module.exports.createBanner = asyncHandler(async (req, res) => {
     try {
         const { title, description, link } = req.body;
 
-        if (!title || !link || !req.file) {
+        if (!link || !req.file) {
             return response.validationError(res, "All details including image are mandatory.");
         }
 

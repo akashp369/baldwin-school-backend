@@ -6,10 +6,10 @@ const { verifyAccessToken } = require('../middleware/helpers');
 
 
 // Announcement Routes
-router.post('/announcement/create', verifyAccessToken, announcementController.createAnnouncement);
-router.get('/announcement/all', announcementController.getAllAnnouncements);
-router.get('/announcement/:id', announcementController.getSingleAnnouncement);
-router.put('/announcement/:id', verifyAccessToken,  announcementController.updateAnnouncement);
-router.delete('/announcement/:id', verifyAccessToken,  announcementController.deleteAnnouncement);
+router.post('/create', verifyAccessToken, announcementController.createAnnouncement);
+router.get('/all', announcementController.getAllAnnouncements);
+router.get('/:id', announcementController.getSingleAnnouncement);
+router.put('/:id', verifyAccessToken,  announcementController.updateAnnouncement);
+router.delete('/:id', verifyAccessToken,  announcementController.deleteAnnouncement);
 
 module.exports = router;
