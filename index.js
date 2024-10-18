@@ -20,6 +20,8 @@ app.get("/", (req, res)=>{
 
 app.use("/api/admin", require("./route/adminRoute"))
 app.use("/api/banner", require("./route/bannerRoute"))
+app.use("/api/news", require("./route/newsRoute"))
+app.use("/api/announcement", require("./route/announcementRoute"))
 
 
 connectionDB(process.env.MONGO_URI)
