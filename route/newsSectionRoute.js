@@ -4,6 +4,8 @@ const NewsSection = require("../modal/newsSectionModel");
 const response = require("../middleware/responseMiddleware");
 const { uploadOnCloudinary, deleteFromCloudinary } = require("../middleware/cloudinary");
 const { verifyAccessToken } = require("../middleware/helpers");
+const upload = require("../middleware/multer")
+
 
 const router = express.Router();
 
@@ -11,6 +13,7 @@ const router = express.Router();
 router.post(
   "/create",
   verifyAccessToken,
+  upload.single('image'),
   asyncHandler(async (req, res) => {
     try {
       const { heading, body, date } = req.body;
@@ -66,9 +69,10 @@ router.get(
 );
 
 // 4. Update News Section
-router.put(
+router.post(
   "/update/:id",
   verifyAccessToken,
+  upload.single('image'),
   asyncHandler(async (req, res) => {
     try {
       const { heading, body, date } = req.body;
@@ -101,12 +105,10 @@ router.delete(
   verifyAccessToken,
   asyncHandler(async (req, res) => {
     try {
-      const news = await NewsSection.findById(req.params.id);
+      const news = await NewsSection.findByIdAndDelete(req.params.id);
       if (!news) {
         return response.notFoundError(res, "News section not found.");
       }
-
-      await news.remove();
       response.successResponse(res, null, "News section deleted successfully.");
     } catch (error) {
       response.internalServerError(res, error.message);

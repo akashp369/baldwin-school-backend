@@ -4,6 +4,7 @@ const SuccessStory = require("../modal/successStoryModel");
 const response = require("../middleware/responseMiddleware");
 const { uploadOnCloudinary } = require("../middleware/cloudinary");
 const { verifyAccessToken } = require("../middleware/helpers");
+const upload = require("../middleware/multer")
 
 const router = express.Router();
 
@@ -11,6 +12,7 @@ const router = express.Router();
 router.post(
   "/create",
   verifyAccessToken,
+  upload.single('image'),
   asyncHandler(async (req, res) => {
     try {
       const { headline, body, date } = req.body;
@@ -66,8 +68,9 @@ router.get(
 );
 
 // 4. Update Success Story
-router.put(
+router.post(
   "/update/:id",
+  upload.single('image'),
   asyncHandler(async (req, res) => {
     try {
       const { headline, body, date } = req.body;
@@ -99,12 +102,10 @@ router.delete(
   "/delete/:id",
   asyncHandler(async (req, res) => {
     try {
-      const success = await SuccessStory.findById(req.params.id);
+      const success = await SuccessStory.findByIdAndDelete(req.params.id);
       if (!success) {
         return response.notFoundError(res, "Success story not found.");
       }
-
-      await success.remove();
       response.successResponse(res, null, "Success story deleted successfully.");
     } catch (error) {
       response.internalServerError(res, error.message);
