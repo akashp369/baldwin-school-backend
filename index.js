@@ -24,6 +24,8 @@ app.use("/api/admission-news", require("./route/newsRoute"))
 app.use("/api/announcement", require("./route/announcementRoute"))
 app.use("/api/news", require("./route/newsSectionRoute"))
 app.use("/api/success-story", require("./route/successStoryRoute"))
+app.use("/api/gallery", require("./route/galleryRoute"))
+app.use("/api/categories", require("./route/categoryRoute"))
 
 
 connectionDB(process.env.MONGO_URI)
