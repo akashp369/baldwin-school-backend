@@ -17,8 +17,8 @@ const sendContactFormToMail = asyncHandler(async (req, res) => {
 
         const mailOptions = {
             from: process.env.APP_EMAIL,
-            // to: 'principal@baldwingirls.edu.in',
-            to: 'aakashprajapat59@gmail.com',
+            to: 'principal@baldwingirls.edu.in',
+            // to: 'aakashprajapat59@gmail.com',
             subject: 'New Enquiry Received',
             html: `
                 <p><strong>Name:</strong> ${name}</p>
