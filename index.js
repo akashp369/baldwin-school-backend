@@ -27,6 +27,7 @@ app.use("/api/success-story", require("./route/successStoryRoute"))
 app.use("/api/gallery", require("./route/galleryRoute"))
 app.use("/api/testimonial", require("./route/testimonialRoute"))
 app.use("/api/categories", require("./route/categoryRoute"))
+app.use('/api/contact', require('./route/contactRoute'))
 
 
 connectionDB(process.env.MONGO_URI)
