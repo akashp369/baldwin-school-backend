@@ -12,7 +12,7 @@ const testimonialSchema = new mongoose.Schema(
     },
     stars: {
       type: Number,
-      required: true,
+      // required: true,
       min: 1,
       max: 5, 
     },

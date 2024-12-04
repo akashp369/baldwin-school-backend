@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 
-// Announcement Schema
 const announcementSchema = new mongoose.Schema({
   title: {
     type: String,
@@ -14,10 +13,14 @@ const announcementSchema = new mongoose.Schema({
   },
   date: {
     type: Date,
-    // required: true, // Date of the announcement
+    required: true,
+  },
+  image: {
+    type: String, // Store image path or URL
+    required: true, // Ensure image is mandatory
   },
 }, {
-  timestamps: true // Automatically adds createdAt and updatedAt fields
+  timestamps: true,
 });
 
 const Announcement = mongoose.model('Announcement', announcementSchema);
