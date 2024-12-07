@@ -6,7 +6,7 @@ const { uploadOnCloudinary } = require('../middleware/cloudinary');
 // Create a new sport gallery entry
 module.exports.createSportGallery = asyncHandler(async (req, res) => {
     try {
-        const { category } = req.body;
+        const { category, title } = req.body;
 
         if (!category || !req.file) {
             return response.validationError(res, "Category and image are required.");
@@ -23,7 +23,8 @@ module.exports.createSportGallery = asyncHandler(async (req, res) => {
 
         const newGallery = new SportGallery({
             category,
-            image: imageUrl
+            image: imageUrl,
+            title
         });
 
         const savedGallery = await newGallery.save();

@@ -10,6 +10,10 @@ const sportGallerySchema = new mongoose.Schema({
     type: String, // Store a single image URL
     required: true,
   },
+  title:{
+    type:String,
+    default:""
+  }
 }, {
   timestamps: true, // To track createdAt and updatedAt timestamps
 });
