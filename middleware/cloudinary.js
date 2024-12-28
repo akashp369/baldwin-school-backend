@@ -13,7 +13,9 @@ const uploadOnCloudinary = async (file) => {
   
   try {
     console.log("before clound", file);
-    const data = await cloudinary.uploader.upload(file.path);
+    const data = await cloudinary.uploader.upload(file.path, {
+      folder: "Websitecms", // Specify the folder name
+    });
     console.log(data, "<<<thsis is data in cloudinary ");
     return data?.secure_url;
   } catch (error) {
